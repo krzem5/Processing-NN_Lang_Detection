@@ -624,7 +624,7 @@ nacisnij
 ladny
 zapobiec
 Cena
-£
+Â£
 ksiaze
 wiezienie
 prywatny
