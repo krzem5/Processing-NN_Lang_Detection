@@ -1,1 +1,3 @@
-start "" "projects/Processing-NN_Lang_Detection/index/index.pde"
+@echo off
+cls
+python build.py %*
