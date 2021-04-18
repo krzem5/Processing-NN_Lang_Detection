@@ -34,9 +34,9 @@ class Matrix{
 
 
 	float[] toArray(){
-		float[] a=new float[this.h];
-		for (int j=0;j<this.h;j++){
-			a[j]=this.data[j][0];
+		float[] a=new float[this.w];
+		for (int i=0;i<this.w;i++){
+			a[i]=this.data[0][i];
 		}
 		return a;
 	}
