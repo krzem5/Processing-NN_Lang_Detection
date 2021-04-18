@@ -1,5 +1,6 @@
 class Matrix{
-	int w,h;
+	int w;
+	int h;
 	float[][] data;
 
 

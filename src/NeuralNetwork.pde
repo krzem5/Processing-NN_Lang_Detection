@@ -1,7 +1,11 @@
 class NeuralNetwork{
-	Matrix weights_ih,weights_ho;
-	Matrix bias_h,bias_o;
-	int input_nodes,hidden_nodes,output_nodes;
+	Matrix weights_ih;
+  Matrix weights_ho;
+	Matrix bias_h;
+  Matrix bias_o;
+	int input_nodes;
+  int hidden_nodes;
+  int output_nodes;
 	float learning_rate;
 	ActivationFunctions aFunction;
 
