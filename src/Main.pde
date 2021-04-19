@@ -2,10 +2,11 @@ import java.io.File;
 
 
 
-final String[] ALPHABET={"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"};
-final int MODE=1;
-final String WORD_IN="hi";
 final int LETTERS=10;
+final int MODE_PREDICT=0;
+final int MODE_TRAIN=1;
+final int MODE_TEST=2;
+final String[] ALPHABET={"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"};
 final String[] LANGS={"english","polish"};
 
 
@@ -16,6 +17,7 @@ NeuralNetwork nn;
 
 
 void setup(){
+	int m=MODE_PREDICT;
 	LANGS_DICTS=load_langs();
 	File f=new File(dataPath("nn.json"));
 	if (f.exists()&&f.isFile()){
@@ -25,11 +27,12 @@ void setup(){
 		nn=new NeuralNetwork(LETTERS*ALPHABET.length,LETTERS,LANGS.length,0.001);
 	}
 	saveJSONObject(nn.toJSON(),"data/nn.json");
-	if (MODE==0){
-		String l=to_lang(nn.predict(to_float(WORD_IN)));
-		println("PREDICTING > "+WORD_IN+" is "+l.toUpperCase()+"(?)");
+	if (m==MODE_PREDICT){
+		String tw="Test";
+		String l=to_lang(nn.predict(to_float(tw)));
+		println("The word '"+tw+"' is "+l);
 	}
-	else if (MODE==1){
+	else if (m==MODE_TRAIN){
 		test();
 		int total=0;
 		for (int i=0;i<LANGS_DICTS.length;i++){
@@ -59,7 +62,7 @@ void setup(){
 		println(t);
 		test();
 	}
-	else if (MODE==2){
+	else{
 		test();
 	}
 	saveJSONObject(nn.toJSON(),"data/nn.json");
@@ -78,7 +81,7 @@ String[][] load_langs(){
 				b[k++]=a[j].toLowerCase();
 			}
 			else{
-				println("REMOVED > "+l.toUpperCase()+" > "+a[j].toLowerCase());
+				println("[WARN] The word '"+a[j].toLowerCase()+"' is too long ");
 			}
 		}
 		data[i]=b;
@@ -132,5 +135,5 @@ void test(){
 			}
 		}
 	}
-	println("TEST > "+(float)correct/total*100+"% accurate");
+	println("The Neural Network is "+(float)correct/total*100+"% accurate");
 }
