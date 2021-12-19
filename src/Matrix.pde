@@ -174,14 +174,14 @@ class Matrix{
 			for (int i=0;i<this.w;i++){
 				cw[i]=max(cw[i],str(this.data[j][i]).replace("-","").length());
 				mn[i]=mn[i]||false;
-				mn[i]=str(str(this.data[j][i]).charAt(0))=="-"||mn[i];
+				mn[i]=str(this.data[j][i]).charAt(0)=='-'||mn[i];
 			}
 		}
 		for (int j=0;j<this.h;j++){
 			String str="";
 			for (int i=0;i<this.w;i++){
 				str+=" ";
-				if (mn[i]==true&&str(str(this.data[j][i]).charAt(0))!="-"){
+				if (mn[i]==true&&str(this.data[j][i]).charAt(0)!='-'){
 					str+=" ";
 				}
 				str+=this.data[j][i];
